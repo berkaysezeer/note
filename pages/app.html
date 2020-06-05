@@ -1,0 +1,38 @@
+﻿<!--https://www.w3schools.com/howto/tryit.asp?filename=tryhow_js_sidenav_push-->
+<!--https://www.w3schools.com/howto/howto_js_sidenav.asp-->
+<div id="navNotes" class="sidenav">
+    <a ng-repeat="note in notes | orderBy:'Id':true" ng-click="showNote($event,note)" href="#" class="show-note">
+        {{note.Title}}
+    </a>
+</div>
+
+<div class="container-fluid">
+
+    <div class="row py-3">
+        <div class="col-md-4 col-lg-3">
+            <!--<button onclick="openNav()" class="btn btn-sm btn-info mb-2 d-inline d-sm-none"><i class="fas fa-bars"></i></button>-->
+            <button class="btn btn-sm btn-light d-inline d-sm-none mb-2" onclick="openNav()"><i class="fas fa-bars"></i></button>
+            <button ng-click="newNote()" type="button" class="btn btn-sm btn-success add-new-note mb-2"><i class="fas fa-plus mr-1"></i>New</button>
+            <div class="list-group d-none d-sm-block" id="notes">
+                <a ng-repeat="note in notes | orderBy:'Id':true" ng-click="showNote($event,note)"
+                   ng-class="{active: note.Id== currentNote.Id}" href="#" class="list-group-item list-group-item-action">
+                    {{note.Title}}
+                </a>
+            </div>
+        </div>
+        <div class="col-md-9 col-lg-9 mt-md-0 mt-3">
+            <form id="frmNote" ng-submit="submitNote()">
+                <div class="form-group">
+                    <input ng-model="noteForm.Title" required id="title" type="text" class="form-control" placeholder="Title" />
+                </div>
+                <div class="form-group">
+                    <textarea ng-model="noteForm.Content" id="content" class="form-control" placeholder="Content" rows="7" cols="20"></textarea>
+                </div>
+                <div>
+                    <button ng-click="deleteNote()" id="btnDelete" type="button" class="btn btn-danger">Delete</button>
+                    <button type="submit" class="btn btn-primary">Save</button>
+                </div>
+            </form>
+        </div>
+    </div>
+</div>
